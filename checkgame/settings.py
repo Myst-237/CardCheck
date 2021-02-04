@@ -24,7 +24,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = '_n8*!i(6$6h4wvhu40%pw^p#j+y2j)v^ogc4_az*qc7!57atng'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.8.101','127.0.0.1','192.168.8.100','checkgame237.herokuapp.com']
 
