@@ -165,8 +165,8 @@ AUTHENTICATION_BACKENDS = [
 
 ]
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 SITE_ID = 1
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
