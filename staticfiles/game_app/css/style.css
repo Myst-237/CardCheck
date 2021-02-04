@@ -1,0 +1,119 @@
+body, html {
+    height: 100%;
+  }
+  
+.bg {
+  /* The image used */
+  background-image: url("../images/bgrnd.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fb {
+    width: 75%;
+    background-color: #3B5998;
+    color: white;
+  }
+
+.btn {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+
+.signin {
+    width: 30%;
+    background-color: #55ACEE;
+    color: white;
+  }
+
+.dashboard {
+    background-color: white;
+    border:1px solid black;
+    margin-left: 35px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;
+}
+
+.dashboard a{
+    color: blue;
+}
+
+.gameboard{
+    /* background-image: url("../images/background.jpg"); */
+    margin-left: 10px;
+}
+
+.playingboard{
+    height: 350px;
+}
+
+.displayboard{
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.options{
+    border-top: 2px solid black;
+    padding-top: 10px;
+}
+.dealboard{
+    margin-bottom: 20px;
+    height: 170px;
+    width: 120px;
+    padding: 10px;
+    margin-left: 770px;
+}
+
+.playerboard img, .dealboard img {
+    width: 100px;
+    height: 130px;
+}
+
+.displayboard img {
+  position: absolute;
+    top: 90px;
+    left: 90px;
+    width: 150px;
+    height: 200px;
+}
+
+#player-1 img, #player-2 img, #oponent_cards img{
+    position: absolute;
+    transition: transform .2s;
+}
+
+#player-1 img:hover, #player-2 img:hover, .dealboard img:hover{
+    transform: scale(1.2);
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.card-1{ left: 10px; top: 40px;z-index: 1;}.card-2{ left: 40px; top: 40px;z-index: 2;}.card-3{left: 70px; top: 40px;z-index: 3;}
+.card-4{left: 100px; top: 40px; z-index: 4;}.card-5{left: 130px; top: 40px;z-index: 5;}.card-6{left: 160px; top: 40px;z-index: 6;}
+.card-7{ left: 190px; top: 40px;z-index: 7;}.card-8{ left: 220px; top: 40px;z-index: 8;}.card-9{left: 10px; top: 185px;z-index: 1;}
+.card-10{left: 40px; top: 185px; z-index: 2;}.card-11{left: 70px; top: 185px;z-index: 3;}.card-12{left: 100px; top: 185px;z-index: 4;}
+.card-13{ left: 130px;top: 185px;z-index: 5;}.card-14{ left: 160px;top: 185px;z-index: 6;}.card-15{left: 190px;top: 185px;z-index: 7;}
+.card-16{left: 220px;top: 185px; z-index: 8;}
+
+.navbar-text a {
+    display: inline;
+}
