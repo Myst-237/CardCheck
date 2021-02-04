@@ -1,0 +1,27 @@
+{% extends "game_app/base.html" %}
+{% load static %}
+{% block body %}
+<html>
+<head>
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">
+</head>
+<body>
+<h1 style="text-align:center">Please wait while your request is sent </h1>
+{%if user.is_authenticated %}
+<h2 class="invisible" id="rejected" style="text-align:center"> Your request has been rejected navigate to the home page <a href="{% url 'game_app:home' %}">Home</a> </h2>
+<div class="container invisible d-flex justify-content-center" id="sent">
+    <h2> Your request has been accepted  </h2>
+    <form action="{% url 'game_app:game_session' %}" method="get">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary"> Play</button>
+    </form>
+</div>
+{% endif %}
+<script src="{% static 'game_app/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'game_app/js/requests.js' %}"></script>
+</body>
+</html>
+{% endblock %}

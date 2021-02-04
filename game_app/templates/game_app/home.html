@@ -1,0 +1,89 @@
+{% extends "game_app/base.html" %}
+{% load static %}
+{% block body %}
+<html>
+<head>
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">
+</head>
+<body>
+    {% if messages %}
+        {%for message in messages%}
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+            <strong>{{message}}</strong>
+          </div>
+        {%endfor%}
+    {%endif%}
+<div class="board container-fluid mt-3 ">
+    <div class="row">
+        <div class="col-sm-5 dashboard">
+            <h2 style="text-align:center"> Dash board</h2>
+            <ul>
+                {% if user.is_authenticated %}
+                <li>
+                    <div class="dropdown show">
+                          <button class="btn btn-primary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose an Opponent  
+                        </button>
+                        {% if users|length > 1 %}
+                          <div class="dropdown-menu pl-2" aria-labelledby="dropdownMenuLink">
+                                <form action="{% url 'game_app:play_request' %}" method="post">
+                                {% csrf_token %}
+                                {% for active_user in users %}
+                                {% if active_user != user %}
+                                    <div class="form-check pl-4">
+                                        <input class="form-check-input" type="radio" value="{{active_user.username}}" id="{{active_user.pk}}" name="selected_user">
+                                        <label class="form-check-label" for="{{active_user.pk}}">
+                                            {{active_user.username}}
+                                        </label>
+                                    </div>
+                                    {% endif %}
+                              {% endfor %}
+                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                          </div>
+                        {% else %}
+                            <div class="dropdown-menu pl-2" aria-labelledby="dropdownMenuLink">
+                                <h4> There are no online Players. </h4>
+                            </div>
+                        {% endif %}
+                    </div>
+                </li>
+                <li>
+                    <h3> Click Play to continue a session </h3>
+                    <a href="{% url 'game_app:game_session' %}" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Play</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            {%if user.is_authenticated %}
+            <div class="invisible" id="requestBox">
+                <h2> You are recieving a request from <span id="sender"> </span></h2>
+                <h2> Do You want to confirm?</h2>
+                <form action="{% url 'game_app:handle_requests' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="option" id="inlineRadio1" >
+                        <label class="form-check-label" for="inlineRadio1"> Yes </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="option" id="inlineRadio2" value="no">
+                        <label class="form-check-label" for="inlineRadio2"> No </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'game_app/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'game_app/js/recieve.js' %}"></script>
+</body>
+</html>
+{% endblock %}

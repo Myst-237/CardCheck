@@ -1,0 +1,69 @@
+{%  load static %}
+{% load socialaccount %}
+{% providers_media_js %} 
+<html>
+    <head>
+        <title> Check </title>
+        <link rel="shortcut icon" href="{% static 'game_app/images/heart.png' %}" type="image/png">
+         <link rel="stylesheet" href="{% static 'game_app/css/bootstrap.css' %}">
+         <link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="bg">
+       <div class="container-fluid">
+           <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="{% url 'game_app:home' %}">
+                        <img class="logo" src="{% static 'game_app/images/logo.jpg' %}" width="30" height="30" class="d-inline-block align-top" alt="CardCheck">
+                        CardCheck
+                      </a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'game_app:home' %}"> Home </a><span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Option
+                            </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Game setting</a>
+                            <a class="dropdown-item" href="#">Theme</a>
+                        </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"> Help </a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text ">
+                        {% if user.is_authenticated %}
+                        Signed in as <span id="username">{{user.username}}</span>/
+                        <a href="{% url 'account_logout' %}">SignOut</a>
+                        {% else %}
+                        <a href='{% provider_login_url "facebook" method="oauth2" %}' class="fb btn mr-2">
+                            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                        </a>
+                        <a class="btn signin mr-2" href="{% url 'account_login' %}">SignIn
+                        </a>
+                        {% endif %}
+                    </span>
+                </div>
+           </nav>
+       </div>
+
+       {% block body %}
+
+    <div class="p-3 col-6 offset-3">
+          {% block content %}
+    {% endblock %}
+    </div>
+    {% endblock %}
+</div>
+    <script src="{% static 'game_app/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'game_app/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'game_app/js/bootstrap.js' %}"></script>
+</body>
+</html>

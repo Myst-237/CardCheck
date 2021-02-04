@@ -1,0 +1,23 @@
+{% extends "game_app/base.html" %}
+{% load static %}
+{% block body %}
+<html>
+<head>
+    <title>
+
+    </title>
+    <link rel="stylesheet" href="{% static 'game_app/css/style.css' %}">
+</head>
+<body>
+<h1 class="mt-3" style="text-align:center">The game has been created tap Play</h1>
+<div class="d-flex justify-content-center">
+    <form action="{% url 'game_app:game_session' %}" method="get">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Play</button>
+    </form>    
+</div>
+<script src="{% static 'game_app/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'game_app/js/requests.js' %}"></script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "game_app/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block body %}
+<html>
+<head>
+    <title>
+
+    </title>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+</head>
+<body>
+<div class="board container-fluid mt-3 ">
+    <div class="row">
+        <div class="col-sm-2 dashboard">
+         <h2> Dash board</h2>
+            <ul>
+                <li>
+                   Game session
+                    <ul>
+                        <li>
+                            Player 1: {{player1.user.get_username}}
+                        </li>
+                        <li>
+                            Player 2: {{player2.user.get_username}}
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Scores
+                    <ul>
+                        <li>
+                            Player 1:<span id="player1-score"> {{player1.score}}</span>
+                        </li>
+                        <li>
+                            Player 2:<span id="player2-score"> {{player2.score}}</span>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <div class="dropdown mt-2">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Leave session
+                          </button>
+                          <div class="dropdown-menu pl-2" aria-labelledby="dropdownMenuButton">
+                                <form action="{% url 'game_app:game_session' %}" method="post">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                          </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-9 gameboard">
+                <div class="row playingboard">
+                    <div class="col-sm-4 playerboard" >
+                        {% if user == player1.user %}
+                        <h4> YOU </h4>
+                            <div id="{{ player1.div }}">
+                                
+                            </div>
+                         {% elif user == player2.user %}
+                         <h4> YOU </h4>
+                            <div id="{{ player2.div }}">
+                                
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="col-sm-4 displayboard" >
+                        <div id="board">
+                            
+                        </div>
+                        </div>
+                    <div class="col-sm-4 playerboard">
+                        <h4> Opponent <span style="color:red" id="checkme"> </span> </h4>
+                        <div id="oponent_cards">
+
+                        </div>
+                    </div>
+                </div>
+               <div class="options pb-3">
+                    <div class="row">
+                            <div class="player1-option col-sm-5 pl-3 d-flex justify-content-start">
+                                <button type="button" id="pick-btn" class="btn btn-success">Pick</button>
+                                <div class="pl-2" id="command">
+                                       
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <button type="button" id="start-btn" class="btn btn-danger" > start</button>
+                            </div>
+                            <div class="col-sm-5 ">
+                                <div  class=row>
+                                    <div class="col-sm-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="play_status" disabled>
+                                            <label class="form-check-label" for="play_status">
+                                              <span style="color:black">Play Status</span>
+                                            </label>
+                                          </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span id="commanded_card" style="color:red"> </span>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                        
+               </div>
+        </div>
+    </div>
+    <div class="dealboard mt-2 invisible">
+            <div class="row">
+                <div id="dealboard-deck" class="col ">
+
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col">
+                   <p>cards left: <span id="dealbaord-card"> </span></p>
+                </div>
+            </div>
+    </div>
+</div>
+
+<script src="{% static 'game_app/js/jquery-3.3.1.min.js' %}"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="{% static 'game_app/js/check2.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}
