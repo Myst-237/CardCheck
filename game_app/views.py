@@ -161,7 +161,7 @@ def game_session(request):
             if card in ['H','C','D','S']:
                 playboard.card_dict.append({'card':card,'played_by':'command'})
                 playboard.save()
-            if len(player.cards) == 0 and card != 'R':
+            if (len(player.cards) == 0) and (card != 'R') and (not card in ['H','C','D','S']):
                 player.score = player.score + 1
                 player.save()
             data = {
