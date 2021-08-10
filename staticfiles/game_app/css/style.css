@@ -4,7 +4,7 @@ body, html {
   
 .bg {
   /* The image used */
-  background-image: url("../images/bgrnd.jpg");
+  background-image: url("../images/bliss.jpg.jpg");
 
   /* Full height */
   height: 100%; 
@@ -57,7 +57,7 @@ body, html {
 }
 
 .gameboard{
-    /* background-image: url("../images/background.jpg"); */
+    background-image: url("../images/background.jpg");
     margin-left: 10px;
 }
 
